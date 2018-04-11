@@ -1,0 +1,220 @@
+<div class="container">
+  <div class="jumbotron">
+      <form #frm="ngForm" (ngSubmit)="addReport(frm)" >
+          <div class="text-center">
+              <b><h1 class="text-primary">CT SITE INFORMATION FORM</h1></b>
+              <h4 class="text-primary">MOTION/MADT/Temperature Monitoring for IMP &amp; Excursion Reporting</h4>
+          </div>
+          <hr>
+
+          
+          <div class="form-group">
+              <label for="site"><b>CT SITE NAME *</b></label>
+              <br>
+              
+                  
+                      <mat-form-field class="example-full-width" >
+                        <input  matInput  placeholder="site name" [(ngModel)]="site_name" name ="site_name"    required>
+                        
+                        
+                        <mat-error *ngIf="siteFormControl.hasError('required')">
+                          Site name is <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                      
+             
+
+          </div>
+          
+          <br>
+          <div class="form-group">
+              <form class="example-form">
+                  
+                  <label for="site"><b>CT SITE ADDRESS *</b></label>
+                  
+                <br>
+                  
+                    <mat-form-field class="example-full-width">
+                      <textarea matInput  placeholder="Address line 1" [(ngModel)]="site_address1" name ="site_address1" required ></textarea>
+                      
+                      <mat-error *ngIf="addressFormControl.hasError('required')">
+                          address is <strong>required</strong>
+                      
+                      </mat-error>
+                      <br>
+                      <br>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="example-full-width">
+                      <textarea matInput  placeholder="Address line 2"[(ngModel)]="site_addressLine2" name ="site_addressLine2"  required ></textarea>
+                      
+                      <mat-error *ngIf="addressFormControl1.hasError('required')">
+                          address Line2 is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                 
+
+                  <br>
+                  <br>
+                  <table class="example-full-width" cellspacing="10"><tr>
+                    <td><mat-form-field class="example-full-width">
+                      <input matInput placeholder="City" [(ngModel)]="city" required name="city" ngModel>
+                      
+                      <mat-error *ngIf="cityFormControl.hasError('required')">
+                          City is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field></td>
+                    <td><mat-form-field class="example-full-width">
+                            
+                                    <mat-select placeholder="State" required name="state"  [(ngModel)]="state">
+                                      <mat-option *ngFor="let state of states" [value]="state.value" >
+                                        {{ state.viewValue }}
+                                      </mat-option>
+                                      
+                                    </mat-select>
+                                    <mat-error *ngIf="stateFormControl.hasError('required')">
+                                            State is <strong>required</strong>
+                                          </mat-error>
+                                  </mat-form-field>
+                      </td>
+                    <td><mat-form-field class="example-full-width">
+                      <input matInput #postalCode placeholder="Postal code"maxlength="5" [(ngModel)]="postal" required name="postal" >
+                      
+                      <mat-error *ngIf="postalFormControl.hasError('required')">
+                          Postal code is <strong>required</strong>
+                        </mat-error>
+                      <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                    </mat-form-field></td>
+                  </tr></table>
+                </form>
+                
+
+          </div>
+         
+          <br>
+          <div class="form-group">
+              <label for="site"><b>CT PHONE NUMBER *</b></label>
+              <br>
+              
+              
+                  <input  size="5" name="area" ngModel >
+                  <span>&ndash;</span>
+                 
+                  <input  size="12" name="phone" ngModel >
+                  <small class="form-text text-muted">area code - phone number</small>
+          </div>
+          <br>
+          
+          <div class="form-group">
+
+              <label for="site"><b>NAME OF CLINICAL RESEARCH ASSOCIATE (PoC at SITE) *</b></label>
+              <form class="example-form" >
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="First name"[(ngModel)]="firstname" required name="firstname" >
+                    <mat-error *ngIf="firstFormControl.hasError('required')">
+                        First name is <strong>required</strong>
+                      </mat-error>
+                  </mat-form-field>
+                 <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Last name" [(ngModel)]="lastname" required name="lastname" ngModel>
+                    <mat-error *ngIf="lastFormControl.hasError('required')">
+                        Last name is <strong>required</strong>
+                      </mat-error>
+                  </mat-form-field>
+                </form>
+
+          </div>
+          
+          <br>
+          <div class="form-group">
+              <form class="example-form">
+                  <label for="site"><b>E-MAIL ADDRESS of CRA *</b></label>
+                  
+                  <mat-form-field class="example-full-width">
+                    <input  matInput placeholder="example@example.com" [(ngModel)]="email" name="email"  required ng-pattern="/^.+@.+\..+$/">
+                   
+                    
+                    
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </form>
+              
+            
+          </div>
+
+          <div class="form-group">
+              <label for="site"><b>PHONE NUMBER of CRA *</b></label>
+              <br>
+              <br>
+              
+                  <input  size="5" name="cra_area" ngModel > 
+                  <span>&ndash;</span>
+                
+                  <input  size="12" name="cra_phone" ngModel >
+                  <small class="form-text text-muted">area code - phone number</small>
+                  
+          </div>
+          <br>
+          <div class="form-group">
+              <label for="make"><b>MAKE AND MODEL OF PHONE IN USE *</b></label>
+              <br>
+              <div class="form-group">
+                  <form class="example-form">
+                      <mat-form-field class="example-full-width">
+                        <input  matInput placeholder="example: iPhone 7/ Samsung Galaxy Note 3" [(ngModel)]="model"name="model" required>
+                       
+                        
+                        
+                        <mat-error *ngIf="makeFormControl.hasError('required')">
+                         This field is <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                    </form>
+              </div>
+          </div>
+
+     
+          <br>
+          <div class="form-group">
+              <label for="make"><b>TEMPERATURE TO BE MEASURED IS OF:</b></label>
+              <br>
+              <mat-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason" name="options">
+                  <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                    {{season}}
+                  </mat-radio-button>
+                </mat-radio-group>
+                <div class="example-selected-value">Option selected is : {{favoriteSeason}}</div>
+
+
+          </div>
+
+          <div class="form-group">
+                <label for="count"><b>NUMBER OF REFRIGERATORS AT CT SITE (optional)</b></label>
+                <br>
+                
+                    
+                        
+                          <input  name ="count"  ngModel >
+                       
+                     
+                
+            </div>
+       <br>
+          <button type="submit" name="button" class="btn btn-primary" ng-click="addReport(frm.value)" >submit</button>
+      </form>
+          
+       
+  </div>
+</div>   
+<hr>
+<ul class="list-group">
+        <li *ngFor="let user of userList" class="list-group-item">
+        {{user.site_name}}
+        </li>
+        </ul>
+{{frm.value| json}}
+
+
+
